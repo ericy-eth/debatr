@@ -43,8 +43,8 @@ const MyForm = ({ onSubmit }) => {
         
        {({ errors, touched, handleChange, handleBlur }) => (
         <>
-    <Form style={{ display: "flex" }}>
-            <div style={{ width: 400, margin: "auto" }}>
+    <Form >
+            <div >
               {pages[state.page]}
               <FormItem>
                 {state.page === pages.length - 1 ? (
