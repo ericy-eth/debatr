@@ -14,8 +14,10 @@ const navigation = [
   { name: 'Company', href: '#' },
 ]
 
-export default function Example() {
+export default function Example({scrollToSection}) {
 const { push } = useRouter();
+
+
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -66,8 +68,9 @@ const { push } = useRouter();
                   className="h-8 w-auto"
                   src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                   alt=""
-                />
+                /> 
               </a>
+
               <button
                 type="button"
                 className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -121,8 +124,8 @@ const { push } = useRouter();
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-              Announcing our next round of funding.{' '}
-              <a href="#" className="font-semibold text-indigo-600">
+              Announcing the release of our Alpha V1.{' '}
+              <a href="https://medium.com" className="font-semibold text-indigo-600">
                 <span className="absolute inset-0" aria-hidden="true" />
                 Read more <span aria-hidden="true">&rarr;</span>
               </a>
@@ -131,7 +134,7 @@ const { push } = useRouter();
           
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              AI to improve your debates
+              Ask AI to improve your debates
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
             Our application enables anyone to quickly and easily create powerful debating speeches with the help of AI. With <b>VocalForge</b>, all you have to do is provide your topic, and we'll generate engaging and effective speeches for you to use in debates!
@@ -167,7 +170,7 @@ const { push } = useRouter();
           />
         </div>
       </div>
-      <Clouds/>
+      {/* <Clouds/> */}
 
     </div>
   )

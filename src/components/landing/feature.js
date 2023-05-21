@@ -2,19 +2,19 @@ import { CloudArrowUpIcon, LockClosedIcon, ServerIcon } from '@heroicons/react/2
 
 const features = [
   {
-    name: 'Push to deploy.',
+    name: 'Wildly Customizable.',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+      "Get quality speeches tailored to your needs. Supports different types of debate compeitions",
     icon: CloudArrowUpIcon,
   },
   {
-    name: 'SSL certificates.',
-    description: 'Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.',
+    name: 'Blazingly Fast.',
+    description: ' Publish your debate speeches in minutes, no need to wait',
     icon: LockClosedIcon,
   },
   {
-    name: 'Database backups.',
-    description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
+    name: 'Extremley Flexible.',
+    description: 'Our application uses AI to generate debate speeches for you that include not just arguments in favor of your cause but also powerful rebuttals to any counterpoints your opponents may raise. With our AI-assisted speech creation, you’ll be better prepared to win any debate!',
     icon: ServerIcon,
   },
 ]
@@ -26,11 +26,10 @@ export default function Example() {
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
           <div className="lg:pr-8 lg:pt-4">
             <div className="lg:max-w-lg">
-              <h2 className="text-base font-semibold leading-7 text-indigo-600">Deploy faster</h2>
+              <h2 className="text-base font-semibold leading-7 text-indigo-600">Work faster</h2>
               <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">A better workflow</p>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque,
-                iste dolor cupiditate blanditiis ratione.
+              Our application allows you to quickly and easily deploy your AI-assisted speech creation app. Debate speeches can be generated and published in minutes, and they come with rebuttals to any counterpoints your opponents may raise. With VocalForge, you'll be better equipped to take on any debate!
               </p>
               <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
                 {features.map((feature) => (

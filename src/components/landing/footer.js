@@ -128,7 +128,7 @@ export default function Footer(){
 
         <li>
           <a
-            href="/"
+            href="https://github.com/ericy-eth/vocal-forge"
             rel="noreferrer"
             target="_blank"
             className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
