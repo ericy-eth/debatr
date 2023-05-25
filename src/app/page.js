@@ -1,24 +1,16 @@
-import Document from "@/components/home/document"
-
-import DocumentContainer from "@/components/home/documentContainer"
-export default function Home() {
-
-  
-  return (
-    <html>
-    <head>
-      <title>Document Creator</title>
-    </head>
-    <body>
-      {/* This is the document creation container */}
-      <DocumentContainer/>
-    {/*  */}
-    
-    </body>
-    </html>
 
 
-  )
+import Hero from "@/components/landing/hero"
+import Clouds from "@/components/landing/logoClouds"
+import Feature from "@/components/landing/feature"
+import Testimonial from "@/components/landing/testimonial"
+import Footer from "@/components/landing/footer"
+export default function Landing(){
+
+    return(<>
+    <Hero/>
+    <Feature/>
+    <Testimonial/>
+    <Footer/>
+    </>)
 }
-
-

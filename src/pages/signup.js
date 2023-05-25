@@ -12,7 +12,34 @@
   }
   ```
 */
+import 'tailwindcss/tailwind.css';
+import { useState } from 'react';
+import { set } from 'react-hook-form';
+
 export default function Signup() {
+
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+
+    function submitForm(e){
+        e.preventDefault()
+        console.log("Signing up user");
+        try{
+            const result = fetch("/api/register",{
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({ username:username, password: password }),
+            })
+
+       
+        }catch(e){
+            console.log(e);
+            console.log("error");
+        }
+    
+    }
     return (
       <>
         {/*
@@ -46,6 +73,8 @@ export default function Signup() {
                     id="email"
                     name="email"
                     type="email"
+                    onChange={(e)=>setUsername(e.target.value)}
+                    value={username}
                     autoComplete="email"
                     required
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -69,6 +98,7 @@ export default function Signup() {
                     id="password"
                     name="password"
                     type="password"
+                    onChange={(e)=>setPassword(e.target.value)}
                     autoComplete="current-password"
                     required
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -78,6 +108,7 @@ export default function Signup() {
   
               <div>
                 <button
+                onClick={submitForm}
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >

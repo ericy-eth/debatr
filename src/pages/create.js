@@ -3,39 +3,53 @@ import 'tailwindcss/tailwind.css';
 
 const MyForm = ({ onSubmit }) => {
 
-    const [typeChosen, setTypeChosen] = useState(false)
-    const [topicEntered, setTopicEntered] = useState(false)
-    const [sideChosen, setSideChosen] = useState(false)
-
-    function submitForm(e){
+    const [topic, setTopic] = useState(null)
+    const [type, setType] = useState(null)
+    const [side, setSide] = useState(null)
+    
+    const [result, setResult] = useState("")
+    async function submitForm(e){
         e.preventDefault()
+        try {
+            const response = await fetch("/api/newPrompt", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ topic: topic, type: type, side:side }),
+            });
+      
+            const data = await response.json();
+            if (response.status !== 200) {
+              throw data.error || new Error(`Request failed with status ${response.status}`);
+            }
+            console.log(data.result);
+            setResult(data.result)
+
+            // setResult(data.result);
+          } catch(error) {
+            // Consider implementing your own error handling logic here
+            console.error(error);
+            alert(error.message);
+          }
         
     }
 
-
-  
-    
-    
-
-
-
-
-
   return (
-    <div class="border-2 border-black">
+    <div class="m-auto min-w-min max-w-lg">
     
    
       <fieldset onSubmit={submitForm}>
 
         
-        <div class="flex flex-col gap-y-5 m-5 items-center border-2 border-black">
+        <div class="flex flex-col gap-y-5 m-5 items-center">
             {/* Enter Topic */}
             <div class="self-stretch">
                 <legend class="text-lg font-semibold ">What is the Topic?</legend>
                 <div>
                       
                <input
-                   onChange={()=>setTopicEntered(true)}
+                   onChange={(e)=>setTopic(e.target.value)}
                    autoComplete="off"
                    type="text"
                    id="UserEmail"
@@ -46,7 +60,6 @@ const MyForm = ({ onSubmit }) => {
 
             </div>
             {/* Select Type */}
-            {topicEntered &&
             <>
                 <legend class="text-lg self-stretch font-semibold ">What Type of Debate is this?</legend>
                 <div class="grid self-stretch grid-cols-3 gap-4">
@@ -62,7 +75,7 @@ const MyForm = ({ onSubmit }) => {
                   />
   
                   <label
-                  onClick={()=>setTypeChosen(true)}
+                  onClick={(e)=>setType("Fact")}
                   for="Fact"
                   class="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/fact:border-blue-500 peer-checked/fact:ring-1 peer-checked/fact:ring-blue-500"
                   >
@@ -98,7 +111,7 @@ const MyForm = ({ onSubmit }) => {
                   />
   
                   <label
-                  onClick={()=>setTypeChosen(true)}
+                  onClick={(e)=>setType("Opinion")}
                   for="Opinion"
                   class="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/opinion:border-blue-500 peer-checked/opinion:ring-1 peer-checked/opinion:ring-blue-500"
                   >
@@ -134,7 +147,7 @@ const MyForm = ({ onSubmit }) => {
                   />
   
                   <label
-                  onClick={()=>setTypeChosen(true)}
+                  onClick={(e)=>setType("Policy")}
                   for="Policy"
                   class="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/policy:border-blue-500 peer-checked/policy:ring-1 peer-checked/policy:ring-blue-500"
                   >
@@ -161,10 +174,9 @@ const MyForm = ({ onSubmit }) => {
   
               </div>
             </>
-            }
+            
 
             {/* Choose Side */}
-            {typeChosen &&
             <>
                 <legend class="text-lg self-stretch font-semibold ">Which Side are you on?</legend>
 
@@ -181,7 +193,7 @@ const MyForm = ({ onSubmit }) => {
                     />
 
                     <label
-                    onClick={()=>setSideChosen(true)}
+                    onClick={(e)=>setSide("Affirmative")}
                     for="Affirmative"
                     class="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/affirmative:border-blue-500 peer-checked/affirmative:ring-1 peer-checked/affirmative:ring-blue-500"
                     >
@@ -217,7 +229,7 @@ const MyForm = ({ onSubmit }) => {
                     />
 
                     <label
-                    onClick={()=>setSideChosen(true)}
+                    onClick={(e)=>setSide("Negation")}
                     for="Negation"
                     class="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/negation:border-blue-500 peer-checked/negation:ring-1 peer-checked/negation:ring-blue-500"
                     >
@@ -245,7 +257,7 @@ const MyForm = ({ onSubmit }) => {
 
                 </div>
             </>
-            }
+            
           
 
             
@@ -254,9 +266,9 @@ const MyForm = ({ onSubmit }) => {
             
             
 
-            {sideChosen &&
-            <a type="submit" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Create</a>
-            }
+       
+            <button type="submit" onClick={submitForm} class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Create</button>
+            
         
             
 
@@ -264,6 +276,7 @@ const MyForm = ({ onSubmit }) => {
 
 
       </fieldset>
+      <div>{result}</div>
     
     </div>
   
