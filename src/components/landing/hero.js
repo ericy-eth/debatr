@@ -136,10 +136,10 @@ const { push } = useRouter();
           
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Ask AI to improve your debates
+              10x Your Speech in Seconds
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-            Our application enables anyone to quickly and easily create powerful debating speeches with the help of AI. With <b>VocalForge</b>, all you have to do is provide your topic, and we'll generate engaging and effective speeches for you to use in debates!
+            Our application enables anyone to quickly and easily create powerful debating speeches with the help of AI. With <b>Debatr</b>, all you have to do is provide your topic, and we'll generate engaging and effective speeches for you to use in debates!
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
