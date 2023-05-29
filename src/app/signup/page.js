@@ -16,46 +16,20 @@
 import 'tailwindcss/tailwind.css';
 import { useState } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
-// import { useSearchParams } from 'next/navigation';
-export default function Signup() {
+import { Divider } from '@mui/material';
 
-  // const searchParams = useSearchParams()
-  // const callbackUrl= searchParams.get('callbackUrl')
+export default function Signup() {
 
     const {data: session} = useSession()
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-   
-
-    function submitForm(e){
-        e.preventDefault()
-        console.log("Signing up user");
-        try{
-            const result = fetch("/api/register",{
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({ username:username, password: password }),
-            })
-
-       
-        }catch(e){
-            console.log(e);
-            console.log("error");
-        }
     
-    }
-    if(session){
-        return(
-            <div>
-                <p>Welcome {session.user.email}</p>
-                <button onClick={()=>signOut()}>Sign Out</button>
-            </div>
-        )
-    }else{
+
+   
+   
+   
         return (
             <>
               {/*
@@ -124,14 +98,24 @@ export default function Signup() {
         
                     <div>
                       <button
-                      onClick={submitForm}
                         type="submit"
-                        className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        className="flex mb-5 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                       >
                         Sign in
                       </button>
                     </div>
                   </form>
+                  <Divider >
+                    <div class="text-gray-600">
+                      Or
+                    </div>
+                  </Divider>
+                  <btn onClick={()=>{
+                  signIn('google')}} 
+                  class="flex cursor-pointer mt-5 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                  <img class="w-5 m-2" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+                  </btn>
         
                   <p className="mt-10 text-center text-sm text-gray-500">
                     Not a member?{' '}
@@ -140,16 +124,13 @@ export default function Signup() {
                     </a>
                   </p>
                 </div>
-                <btn onClick={()=>{
-                  signIn('google')}} class="inline-block rounded bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500" href="/download">
-                    Sign in with Google
-                </btn>
-
+               
+                <a onClick={()=>signOut()}>Sign Out</a>
               </div>
             </>
           )
 
-    }
+    
   
        
 

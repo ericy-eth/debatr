@@ -2,8 +2,11 @@
 "use client"
 import React, { useState } from "react";
 import 'tailwindcss/tailwind.css';
+import { useSession } from "next-auth/react";
 
 const MyForm = ({ onSubmit }) => {
+
+    const {data: session}= useSession()
 
     const [topic, setTopic] = useState(null)
     const [type, setType] = useState(null)
@@ -12,6 +15,7 @@ const MyForm = ({ onSubmit }) => {
     const [result, setResult] = useState("")
     async function submitForm(e){
         e.preventDefault()
+        console.log(topic, type, side);
         try {
             const response = await fetch("/api/newPrompt", {
               method: "POST",
@@ -21,13 +25,20 @@ const MyForm = ({ onSubmit }) => {
               body: JSON.stringify({ topic: topic, type: type, side:side }),
             });
       
-            const data = await response.json();
+            const speech = await response.json();
             if (response.status !== 200) {
-              throw data.error || new Error(`Request failed with status ${response.status}`);
+              throw speech.error || new Error(`Request failed with status ${response.status}`);
             }
-            console.log(data.result);
-            setResult(data.result)
+            console.log(speech.result);
 
+            const updateUser = await fetch("/api/addSpeech", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({speech: speech.result, username: session.user.email, topic: topic, type: type, side:side }),
+              });
+              console.log(updateUser);
             // setResult(data.result);
           } catch(error) {
             // Consider implementing your own error handling logic here
@@ -98,7 +109,7 @@ const MyForm = ({ onSubmit }) => {
                       </svg>
                   </div>
   
-                  <p class="mt-1 text-gray-900">Free</p>
+                  <p class="mt-1 text-gray-900">      </p>
                   </label>
               </div>
   
@@ -134,7 +145,7 @@ const MyForm = ({ onSubmit }) => {
                       </svg>
                   </div>
   
-                  <p class="mt-1 text-gray-900">£9.99</p>
+                  <p class="mt-1 text-gray-900">         </p>
                   </label>
               </div>
   
@@ -170,7 +181,7 @@ const MyForm = ({ onSubmit }) => {
                       </svg>
                   </div>
   
-                  <p class="mt-1 text-gray-900">£9.99</p>
+                  <p class="mt-1 text-gray-900">          </p>
                   </label>
               </div>
   
@@ -216,7 +227,7 @@ const MyForm = ({ onSubmit }) => {
                         </svg>
                     </div>
 
-                    <p class="mt-1 text-gray-900">Free</p>
+                    <p class="mt-1 text-gray-900">          </p>
                     </label>
                 </div>
 
@@ -252,7 +263,7 @@ const MyForm = ({ onSubmit }) => {
                         </svg>
                     </div>
 
-                    <p class="mt-1 text-gray-900">£9.99</p>
+                    <p class="mt-1 text-gray-900">             </p>
                     </label>
                 </div>
 
