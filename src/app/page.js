@@ -4,6 +4,7 @@ import Hero from "@/components/landing/hero"
 import Clouds from "@/components/landing/logoClouds"
 import Feature from "@/components/landing/feature"
 import Testimonial from "@/components/landing/testimonial"
+import Pricing from "@/components/landing/pricing"
 import Footer from "@/components/landing/footer"
 export default function Landing(){
 
@@ -21,6 +22,7 @@ export default function Landing(){
     <Hero/>
     <Feature/>
     <Testimonial/>
+    <Pricing/>
     <Footer/>
 
     </>)

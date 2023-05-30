@@ -2,13 +2,8 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import 'tailwindcss/tailwind.css';
-
-const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
+import { useSession } from 'next-auth/react';
+import { useState, useEffect } from 'react';
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
   { name: 'Pricing', href: '#', current: false },
@@ -25,6 +20,33 @@ function classNames(...classes) {
 }
 
 export default function Header() {
+  const [name, setName] = useState()
+  const [email, setEmail] = useState()
+  const [image, setImage] = useState()
+  const user = {
+    name: name,
+    email: email,
+    imageUrl: image,
+  }
+
+  useEffect(()=>{
+    getUserEmail()
+  },[])
+
+  async function getUserEmail(){
+      
+    const res = await fetch("/api/auth/session",{
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+    const session = await res.json()
+    const {user} = session
+    setName(user.name)
+    setEmail(user.email)
+    setImage(user.image)
+}
   return (
     <>
       {/*

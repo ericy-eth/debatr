@@ -3,9 +3,11 @@
 import React, { useState, useEffect } from "react";
 import 'tailwindcss/tailwind.css';
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const MyForm = ({ onSubmit }) => {
 
+    const router = useRouter()
     const {data: session}= useSession()
 
     const [topic, setTopic] = useState(null)
@@ -39,6 +41,8 @@ const MyForm = ({ onSubmit }) => {
                 body: JSON.stringify({speech: speech.result, username: session.user.email, topic: topic, type: type, side:side }),
               });
               console.log(updateUser);
+              router.push("/home")
+
             // setResult(data.result);
           } catch(error) {
             // Consider implementing your own error handling logic here
@@ -58,7 +62,7 @@ const MyForm = ({ onSubmit }) => {
         <div className="flex flex-col gap-y-5 m-5 items-center">
             {/* Enter Topic */}
             <div className="self-stretch">
-                <legend className="text-lg font-semibold ">What is the Topic?</legend>
+                <legend className="text-lg  text-black font-semibold ">What is the Topic?</legend>
                 <div>
                       
                <input
@@ -74,7 +78,7 @@ const MyForm = ({ onSubmit }) => {
             </div>
             {/* Select Type */}
             <>
-                <legend className="text-lg self-stretch font-semibold ">What Type of Debate is this?</legend>
+                <legend className="text-lg text-black self-stretch font-semibold ">What Type of Debate is this?</legend>
                 <div className="grid self-stretch grid-cols-3 gap-4">
                   
                   {/* Button 1 */}
@@ -191,7 +195,7 @@ const MyForm = ({ onSubmit }) => {
 
             {/* Choose Side */}
             <>
-                <legend className="text-lg self-stretch font-semibold ">Which Side are you on?</legend>
+                <legend className="text-lg text-black self-stretch font-semibold ">Which Side are you on?</legend>
 
                 <div className="grid self-stretch grid-cols-2 gap-4">
                     
@@ -289,7 +293,6 @@ const MyForm = ({ onSubmit }) => {
 
 
       </fieldset>
-      <div>{result}</div>
     
     </div>
   
