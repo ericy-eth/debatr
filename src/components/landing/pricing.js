@@ -4,14 +4,14 @@ export default function Pricing(){
         <div className="flex m-24  flex-col">
             <div className="flex justify-center">
             <div className="mb-24 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                Get Started For Free
+                Transparent Pricing
             </div>
             </div>
            
 
             <div className="flex justify-between">
-            <div class="w-full max-w-sm p-4  border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-                <h5 class="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">Standard plan</h5>
+                <div class="w-full max-w-sm p-4  border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                <h5 class="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">Free plan</h5>
                 <div class="flex items-baseline text-gray-900 dark:text-white">
                     <span class="text-3xl font-semibold">$</span>
                     <span class="text-5xl font-extrabold tracking-tight">49</span>

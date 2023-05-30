@@ -17,15 +17,18 @@ import 'tailwindcss/tailwind.css';
 import { useState } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { Divider } from '@mui/material';
+import { useRouter } from 'next/navigation';
 
 export default function Signup() {
 
     const {data: session} = useSession()
-
+    const {push} = useRouter()
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-    
+    if(session){
+      push('/home')
+    }
 
    
    
