@@ -1,6 +1,6 @@
 
 "use client"
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import 'tailwindcss/tailwind.css';
 import { useSession } from "next-auth/react";
 
@@ -31,7 +31,7 @@ const MyForm = ({ onSubmit }) => {
             }
             console.log(speech.result);
 
-            const updateUser = await fetch("/api/addSpeech", {
+            const updateUser = await fetch("/api/speech/newSpeech", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
@@ -49,16 +49,16 @@ const MyForm = ({ onSubmit }) => {
     }
 
   return (
-    <div class="m-auto min-w-min max-w-lg">
+    <div className="m-auto min-w-min max-w-lg">
     
    
       <fieldset onSubmit={submitForm}>
 
         
-        <div class="flex flex-col gap-y-5 m-5 items-center">
+        <div className="flex flex-col gap-y-5 m-5 items-center">
             {/* Enter Topic */}
-            <div class="self-stretch">
-                <legend class="text-lg font-semibold ">What is the Topic?</legend>
+            <div className="self-stretch">
+                <legend className="text-lg font-semibold ">What is the Topic?</legend>
                 <div>
                       
                <input
@@ -67,15 +67,15 @@ const MyForm = ({ onSubmit }) => {
                    type="text"
                    id="UserEmail"
                    placeholder="Ex: Schools should do away with homework altogether..."
-                   class="mt-1 p-4 w-full rounded-md border-gray-200 shadow-sm sm:text-sm border-2 border-black"
+                   className="mt-1 p-4 w-full rounded-md border-gray-200 shadow-sm sm:text-sm border-2 border-black"
                />
                </div>
 
             </div>
             {/* Select Type */}
             <>
-                <legend class="text-lg self-stretch font-semibold ">What Type of Debate is this?</legend>
-                <div class="grid self-stretch grid-cols-3 gap-4">
+                <legend className="text-lg self-stretch font-semibold ">What Type of Debate is this?</legend>
+                <div className="grid self-stretch grid-cols-3 gap-4">
                   
                   {/* Button 1 */}
               <div>
@@ -84,19 +84,19 @@ const MyForm = ({ onSubmit }) => {
                   name="DebateType"
                   value="Fact"
                   id="Fact"
-                  class="peer/fact hidden [&:checked_+_label_svg]:block"
+                  className="peer/fact hidden [&:checked_+_label_svg]:block"
                   />
   
                   <label
                   onClick={(e)=>setType("Fact")}
                   for="Fact"
-                  class="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/fact:border-blue-500 peer-checked/fact:ring-1 peer-checked/fact:ring-blue-500"
+                  className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/fact:border-blue-500 peer-checked/fact:ring-1 peer-checked/fact:ring-blue-500"
                   >
-                  <div class="flex items-center justify-between">
-                      <p class="text-gray-700">Fact</p>
+                  <div className="flex items-center justify-between">
+                      <p className="text-gray-700">Fact</p>
   
                       <svg
-                      class="hidden h-5 w-5 text-blue-600"
+                      className="hidden h-5 w-5 text-blue-600"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
@@ -109,7 +109,7 @@ const MyForm = ({ onSubmit }) => {
                       </svg>
                   </div>
   
-                  <p class="mt-1 text-gray-900">      </p>
+                  <p className="mt-1 text-gray-900">      </p>
                   </label>
               </div>
   
@@ -120,19 +120,19 @@ const MyForm = ({ onSubmit }) => {
                   name="DebateType"
                   value="Opinion"
                   id="Opinion"
-                  class="peer/opinion hidden [&:checked_+_label_svg]:block"
+                  className="peer/opinion hidden [&:checked_+_label_svg]:block"
                   />
   
                   <label
                   onClick={(e)=>setType("Opinion")}
                   for="Opinion"
-                  class="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/opinion:border-blue-500 peer-checked/opinion:ring-1 peer-checked/opinion:ring-blue-500"
+                  className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/opinion:border-blue-500 peer-checked/opinion:ring-1 peer-checked/opinion:ring-blue-500"
                   >
-                  <div class="flex items-center justify-between">
-                      <p class="text-gray-700">Opinion</p>
+                  <div className="flex items-center justify-between">
+                      <p className="text-gray-700">Opinion</p>
   
                       <svg
-                      class="hidden h-5 w-5 text-blue-600"
+                      className="hidden h-5 w-5 text-blue-600"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
@@ -145,7 +145,7 @@ const MyForm = ({ onSubmit }) => {
                       </svg>
                   </div>
   
-                  <p class="mt-1 text-gray-900">         </p>
+                  <p className="mt-1 text-gray-900">         </p>
                   </label>
               </div>
   
@@ -156,19 +156,19 @@ const MyForm = ({ onSubmit }) => {
                   name="DebateType"
                   value="Policy"
                   id="Policy"
-                  class="peer/policy hidden [&:checked_+_label_svg]:block"
+                  className="peer/policy hidden [&:checked_+_label_svg]:block"
                   />
   
                   <label
                   onClick={(e)=>setType("Policy")}
                   for="Policy"
-                  class="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/policy:border-blue-500 peer-checked/policy:ring-1 peer-checked/policy:ring-blue-500"
+                  className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/policy:border-blue-500 peer-checked/policy:ring-1 peer-checked/policy:ring-blue-500"
                   >
-                  <div class="flex items-center justify-between">
-                      <p class="text-gray-700">Policy</p>
+                  <div className="flex items-center justify-between">
+                      <p className="text-gray-700">Policy</p>
   
                       <svg
-                      class="hidden h-5 w-5 text-blue-600"
+                      className="hidden h-5 w-5 text-blue-600"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
@@ -181,7 +181,7 @@ const MyForm = ({ onSubmit }) => {
                       </svg>
                   </div>
   
-                  <p class="mt-1 text-gray-900">          </p>
+                  <p className="mt-1 text-gray-900">          </p>
                   </label>
               </div>
   
@@ -191,9 +191,9 @@ const MyForm = ({ onSubmit }) => {
 
             {/* Choose Side */}
             <>
-                <legend class="text-lg self-stretch font-semibold ">Which Side are you on?</legend>
+                <legend className="text-lg self-stretch font-semibold ">Which Side are you on?</legend>
 
-                <div class="grid self-stretch grid-cols-2 gap-4">
+                <div className="grid self-stretch grid-cols-2 gap-4">
                     
                     {/* Button 1 */}
                 <div>
@@ -202,19 +202,19 @@ const MyForm = ({ onSubmit }) => {
                     name="DebateSide"
                     value="Affirmative"
                     id="Affirmative"
-                    class="peer/affirmative hidden [&:checked_+_label_svg]:block"
+                    className="peer/affirmative hidden [&:checked_+_label_svg]:block"
                     />
 
                     <label
                     onClick={(e)=>setSide("Affirmative")}
                     for="Affirmative"
-                    class="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/affirmative:border-blue-500 peer-checked/affirmative:ring-1 peer-checked/affirmative:ring-blue-500"
+                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/affirmative:border-blue-500 peer-checked/affirmative:ring-1 peer-checked/affirmative:ring-blue-500"
                     >
-                    <div class="flex items-center justify-between">
-                        <p class="text-gray-700">Affirmative</p>
+                    <div className="flex items-center justify-between">
+                        <p className="text-gray-700">Affirmative</p>
 
                         <svg
-                        class="hidden h-5 w-5 text-blue-600"
+                        className="hidden h-5 w-5 text-blue-600"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -227,7 +227,7 @@ const MyForm = ({ onSubmit }) => {
                         </svg>
                     </div>
 
-                    <p class="mt-1 text-gray-900">          </p>
+                    <p className="mt-1 text-gray-900">          </p>
                     </label>
                 </div>
 
@@ -238,19 +238,19 @@ const MyForm = ({ onSubmit }) => {
                     name="DebateSide"
                     value="Negation"
                     id="Negation"
-                    class="peer/negation hidden [&:checked_+_label_svg]:block"
+                    className="peer/negation hidden [&:checked_+_label_svg]:block"
                     />
 
                     <label
                     onClick={(e)=>setSide("Negation")}
                     for="Negation"
-                    class="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/negation:border-blue-500 peer-checked/negation:ring-1 peer-checked/negation:ring-blue-500"
+                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/negation:border-blue-500 peer-checked/negation:ring-1 peer-checked/negation:ring-blue-500"
                     >
-                    <div class="flex items-center justify-between">
-                        <p class="text-gray-700">Negative</p>
+                    <div className="flex items-center justify-between">
+                        <p className="text-gray-700">Negative</p>
 
                         <svg
-                        class="hidden h-5 w-5 text-blue-600"
+                        className="hidden h-5 w-5 text-blue-600"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -263,7 +263,7 @@ const MyForm = ({ onSubmit }) => {
                         </svg>
                     </div>
 
-                    <p class="mt-1 text-gray-900">             </p>
+                    <p className="mt-1 text-gray-900">             </p>
                     </label>
                 </div>
 
