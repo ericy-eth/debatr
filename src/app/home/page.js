@@ -1,61 +1,47 @@
-// import Document from "@/components/home/document"
 "use client"
-
+// import Document from "@/components/home/document"
 import Document from "@/components/home/document";
 import Header from '@/components/home/header';
 import 'tailwindcss/tailwind.css';
 import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
-import { useState, useEffect, useRef, useContext } from "react";
-import { UserContext } from "@/components/UserContext";
+import { useEffect, useState } from "react";
+import fetchAllSpeeches from "@/lib/fetchAllSpeeches";
+import getUserSession from "@/lib/getUserSession";
+
 import { useRouter } from "next/navigation";
+
+
+
+// async function getUserSession(){
+//   const res = await fetch("http://localhost:3000/api/auth/session", {
+//       method: "GET",
+//       headers: {
+//         "Content-Type": "application/json",
+//       }
+//     });
+//     return res
+// }
 export default function Home() {
   const { push } = useRouter();
 
-  const documents = ["test", "a", "test", "test", "test"]
-
+  const [userSession, setUserSession] = useState()
   const [userSpeeches, setUserSpeeches] = useState([])
+
+
+
   useEffect(()=>{
-    async function getUserEmail(){
-      
-        const res = await fetch("/api/auth/session",{
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          }
-        })
-        const session = await res.json()
-        console.log("session ", session);
-        await fetchSpeeches(session.user.email)
-
-    }
+    getUserSession()
+      .then((res)=>res.json())
+      .then((session)=>{
+        fetchAllSpeeches(session.user.email)
+        .then((res) => res.json())
+        .then((data) => {
+          setUserSpeeches(data.userDocuments);
+        });
+      })
    
-      getUserEmail()
-    
 
-      
-    
-
-  
-      
- },[])
-
-    async function fetchSpeeches(email){
-      const userEmail = email
-      const res = await fetch("/api/speech/getSpeech", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({username: userEmail}),
-      });
-      const data = await res.json()
-      console.log(data.userDocuments);
-      setUserSpeeches(data.userDocuments)
-    }
-  
-   
-  
+  },[])
   
     return (
       <>
@@ -65,7 +51,7 @@ export default function Home() {
 
     
 
-        <div className="mx-auto px-5 rounded-md col-span-4 ">
+        <div className=" mx-32 px-5 rounded-md col-span-4 ">
       <div className="flex items-center gap-5 flex-wrap">
         <a onClick={()=>push('/create')}
         className=" w-56 h-72  hover:bg-gray-100 flex items-start justify-between rounded-xl border border-gray-100 p-4 shadow-xl sm:p-6 lg:p-8 "
@@ -86,7 +72,7 @@ export default function Home() {
       </a>
     
     {userSpeeches.map((document, i)=>(
-      <Document key={i} document={document}/>
+      <Document key={i} id={i} document={document}/>
       ))}
 
       

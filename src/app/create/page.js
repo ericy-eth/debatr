@@ -71,7 +71,7 @@ const MyForm = ({ onSubmit }) => {
                    type="text"
                    id="UserEmail"
                    placeholder="Ex: Schools should do away with homework altogether..."
-                   className="mt-1 p-4 w-full rounded-md border-gray-200 shadow-sm sm:text-sm border-2 border-black"
+                   className="mt-1 p-4 w-full rounded-md text-black border-gray-200 shadow-sm sm:text-sm border-2 border-black"
                />
                </div>
 

@@ -1,7 +1,11 @@
 import 'tailwindcss/tailwind.css';
+import { useRouter } from 'next/navigation';
 
+export default function Document({document, id}){
+  const { push } = useRouter();
+  let sideTag
+  let typeTag
 
-export default function Document({document}){
   function truncateString(str, maxLen) {
     if (str.length > maxLen) {
       return str.substring(0, maxLen) + "...";
@@ -11,13 +15,27 @@ export default function Document({document}){
   }
   let {topic, type, side, speech} = document
 
+  if(side=="Affirmative"){
+    sideTag = "rounded-full bg-green-100 px-3 py-1.5 text-xs font-medium text-green-600"
+  }else{
+    sideTag = "rounded-full bg-red-100 px-3 py-1.5 text-xs font-medium text-red-600"
+  }
+
+  if(type=="Policy"){
+    typeTag = "rounded-full bg-blue-100 px-3 py-1.5 text-xs font-medium text-blue-600"
+  }else if(type=="Opinion"){
+    typeTag = "rounded-full bg-purple-100 px-3 py-1.5 text-xs font-medium text-purple-600"
+  }else{
+    typeTag = "rounded-full bg-orange-100 px-3 py-1.5 text-xs font-medium text-orange-600"
+  }
+
   if(topic.length>50){
     topic = truncateString(topic, 50)
   }
   speech = truncateString(speech, 35)
   
     return(
-        <a
+        <a onClick={()=>push(`/home/speech/${id+1}`)}
         className=" w-56 h-72  hover:bg-gray-100 flex items-start justify-between rounded-xl border border-gray-100 p-4 shadow-xl sm:p-6 lg:p-8 "
         href="#"
       >
@@ -39,12 +57,12 @@ export default function Document({document}){
           </svg> */}
 
           <span
-            className="rounded-full bg-green-100 px-3 py-1.5 text-xs font-medium text-green-600"
+            className={sideTag}
           >
             {side}
           </span>
           <span
-            className="rounded-full bg-green-100 px-3 py-1.5 text-xs font-medium text-green-600"
+            className={typeTag}
           >
             {type}
           </span>

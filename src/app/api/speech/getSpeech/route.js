@@ -12,8 +12,7 @@ export async function POST(request){
         const collection = db.collection("users")
 
         userData = await collection.findOne({email: username})
-        console.log(userData);
-        
+        console.log("fetch request");        
     }catch(e){
         console.log(e);
     }
