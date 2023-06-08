@@ -1,52 +1,36 @@
+"use client"
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, BellIcon, SignalIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import 'tailwindcss/tailwind.css';
-import { useSession } from 'next-auth/react';
+import { useSession, signIn, signOut } from 'next-auth/react';
 import { useState, useEffect } from 'react';
-const navigation = [
-  { name: 'Home', href: '#', current: true },
-  { name: 'Pricing', href: '#', current: false },
+
+
+export default function Header({session}) {
+  const navigation = [
+    { name: 'Home', href: '#', current: true },
+    { name: 'Pricing', href: '#', current: false },
+    
+  ]
+  const userNavigation = [
+    { name: 'Your Profile', href: '#' },
+    { name: 'Settings', href: '#' },
+    { name: 'Sign out', href: '#'},
+  ]
   
-]
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
-]
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
-export default function Header() {
-  const [name, setName] = useState()
-  const [email, setEmail] = useState()
-  const [image, setImage] = useState()
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+  }
+  const {data: sessionClient} = useSession()
+  
   const user = {
-    name: name,
-    email: email,
-    imageUrl: image,
+    name: session.user.name,
+    email: session.user.email,
+    imageUrl: session.user.image,
   }
 
-  useEffect(()=>{
-    getUserEmail()
-  },[])
 
-  async function getUserEmail(){
-      
-    const res = await fetch("/api/auth/session",{
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      }
-    })
-    const session = await res.json()
-    const {user} = session
-    setName(user.name)
-    setEmail(user.email)
-    setImage(user.image)
-}
   return (
     <>
       {/*
@@ -119,10 +103,11 @@ export default function Header() {
                           leaveTo="transform opacity-0 scale-95"
                         >
                           <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            {userNavigation.map((item) => (
-                              <Menu.Item key={item.name}>
+                            {/* {userNavigation.map((item) => ( */}
+                              {/* <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                  <a
+                                  <button
+                                    onClick={item.function}
                                     href={item.href}
                                     className={classNames(
                                       active ? 'bg-gray-100' : '',
@@ -130,10 +115,25 @@ export default function Header() {
                                     )}
                                   >
                                     {item.name}
-                                  </a>
+                                  </button>
+                                )}
+                              </Menu.Item> */}
+                              <Menu.Item key="signout">
+                                {({ active }) => (
+                                  <button
+                                    onClick={()=>signOut({
+                                      callbackUrl:"http://localhost:3000"
+                                    })}
+                                    className={classNames(
+                                      active ? 'bg-gray-100' : '',
+                                      'block px-4 py-2 text-sm text-gray-700'
+                                    )}
+                                  >
+                                    Sign Out
+                                  </button>
                                 )}
                               </Menu.Item>
-                            ))}
+                            {/* ))} */}
                           </Menu.Items>
                         </Transition>
                       </Menu>
