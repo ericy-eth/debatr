@@ -4,19 +4,23 @@ import React, { useState, useEffect } from "react";
 import 'tailwindcss/tailwind.css';
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 const MyForm = ({ onSubmit }) => {
 
     const router = useRouter()
-    const {data: session}= useSession()
+    const {data: session}= useSession({required: true})
 
     const [topic, setTopic] = useState(null)
     const [type, setType] = useState(null)
     const [side, setSide] = useState(null)
+
+    const [formSubmit, setFormSubmit] = useState(false)
     
     const [result, setResult] = useState("")
     async function submitForm(e){
         e.preventDefault()
+        setFormSubmit(true)
         console.log(topic, type, side);
         try {
             const response = await fetch("/api/newPrompt", {
@@ -71,6 +75,7 @@ const MyForm = ({ onSubmit }) => {
                    type="text"
                    id="UserEmail"
                    placeholder="Ex: Schools should do away with homework altogether..."
+                   disabled={formSubmit}
                    className="mt-1 p-4 w-full rounded-md text-black border-gray-200 shadow-sm sm:text-sm border-2 border-black"
                />
                </div>
@@ -88,6 +93,7 @@ const MyForm = ({ onSubmit }) => {
                   name="DebateType"
                   value="Fact"
                   id="Fact"
+                  disabled={formSubmit}
                   className="peer/fact hidden [&:checked_+_label_svg]:block"
                   />
   
@@ -124,6 +130,7 @@ const MyForm = ({ onSubmit }) => {
                   name="DebateType"
                   value="Opinion"
                   id="Opinion"
+                  disabled={formSubmit}
                   className="peer/opinion hidden [&:checked_+_label_svg]:block"
                   />
   
@@ -160,6 +167,7 @@ const MyForm = ({ onSubmit }) => {
                   name="DebateType"
                   value="Policy"
                   id="Policy"
+                  disabled={formSubmit}
                   className="peer/policy hidden [&:checked_+_label_svg]:block"
                   />
   
@@ -206,6 +214,7 @@ const MyForm = ({ onSubmit }) => {
                     name="DebateSide"
                     value="Affirmative"
                     id="Affirmative"
+                    disabled={formSubmit}
                     className="peer/affirmative hidden [&:checked_+_label_svg]:block"
                     />
 
@@ -242,6 +251,7 @@ const MyForm = ({ onSubmit }) => {
                     name="DebateSide"
                     value="Negation"
                     id="Negation"
+                    disabled={formSubmit}
                     className="peer/negation hidden [&:checked_+_label_svg]:block"
                     />
 
@@ -284,7 +294,7 @@ const MyForm = ({ onSubmit }) => {
             
 
        
-            <button type="submit" onClick={submitForm} class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Create</button>
+            <button type="submit" onClick={submitForm} disabled={formSubmit} class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Create</button>
             
         
             
