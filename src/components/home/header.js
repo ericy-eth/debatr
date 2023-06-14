@@ -14,8 +14,6 @@ export default function Header({session}) {
     
   ]
   const userNavigation = [
-    { name: 'Your Profile', href: '#' },
-    { name: 'Settings', href: '#' },
     { name: 'Sign out', href: '#'},
   ]
   
@@ -50,8 +48,8 @@ export default function Header({session}) {
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
                       <img
-                        className="h-8 w-8"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                        className="h-12 w-12"
+                        src="/logo.svg"
                         alt="Your Company"
                       />
                     </div>
@@ -81,8 +79,6 @@ export default function Header({session}) {
                         type="button"
                         className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       >
-                        <span className="sr-only">View notifications</span>
-                        <BellIcon className="h-6 w-6" aria-hidden="true" />
                       </button>
 
                       {/* Profile dropdown */}
@@ -122,7 +118,7 @@ export default function Header({session}) {
                                 {({ active }) => (
                                   <button
                                     onClick={()=>signOut({
-                                      callbackUrl:"http://localhost:3000"
+                                      callbackUrl:"http://localhost:3000/signup"
                                     })}
                                     className={classNames(
                                       active ? 'bg-gray-100' : '',
@@ -183,21 +179,22 @@ export default function Header({session}) {
                       type="button"
                       className="ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                     >
-                      <span className="sr-only">View notifications</span>
-                      <BellIcon className="h-6 w-6" aria-hidden="true" />
+              
                     </button>
                   </div>
                   <div className="mt-3 space-y-1 px-2">
-                    {userNavigation.map((item) => (
+                    
                       <Disclosure.Button
-                        key={item.name}
+                        key="Signout"
                         as="a"
-                        href={item.href}
-                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                        onClick={()=>signOut({
+                          callbackUrl:"http://localhost:3000/signup"
+                        })}
+                        className="block rounded-md px-3 py-2 text-base font-medium cursor-pointer text-gray-400 hover:bg-gray-700 hover:text-white"
                       >
-                        {item.name}
+                        Sign Out
                       </Disclosure.Button>
-                    ))}
+                    
                   </div>
                 </div>
               </Disclosure.Panel>

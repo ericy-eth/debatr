@@ -27,7 +27,6 @@ export async function POST(request){
         const collection = db.collection("users")
 
         const documentExists = await collection.findOne({email: username},{documents:{$exists: true}})
-        console.log(documentExists);
         if(documentExists==null){
             await collection.updateOne({email: username}, {$set:{documents:[]}})
         }

@@ -1,11 +1,15 @@
 "use client"
 import 'tailwindcss/tailwind.css';
 import { useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
+import { red } from '@mui/material/colors';
 
-export default function Document({document, id}){
+export default function Document({document, deleteButton, id}){
   const { push } = useRouter();
   let sideTag
   let typeTag
+
+  
 
   function truncateString(str, maxLen) {
     if (str.length > maxLen) {
@@ -34,53 +38,90 @@ export default function Document({document, id}){
     topic = truncateString(topic, 50)
   }
   speech = truncateString(speech, 35)
-  
+
+  async function deleteSpeech(){
+    console.log("Speech deleted");
+    try{
+      await fetch("/api/speech/deleteSpeech", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({topic: topic }),
+      });
+      console.log("Speech deleted");
+      redirect("localhost:3000/home")
+    }catch(e){
+      console.log(e);
+    }
+   
+
+  }
+  if(deleteButton){
     return(
-        <a onClick={()=>push(`/home/speech/${id+1}`)}
+      <a
+        onClick={deleteSpeech}
         className=" w-56 h-72  hover:bg-gray-100 flex items-start justify-between rounded-xl border border-gray-100 p-4 shadow-xl sm:p-6 lg:p-8 "
         href="#"
       >
         <div className="pt-4 text-gray-500">
-          <div className="flex flex-row gap-2">
-          {/* <svg
-            className="h-8 w-8 sm:h-10 sm:w-10"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
-            ></path>
-          </svg> */}
-
-          <span
-            className={sideTag}
-          >
-            {side}
-          </span>
-          <span
-            className={typeTag}
-          >
-            {type}
-          </span>
-
-          </div>
-      
-      
-          <h3 className="mt-4  text-lg font-bold text-gray-900 sm:text-md">
-           {topic}
+        <svg className='w-10 h-10 sm:h-10 sm:w-10' version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512"><g><path d="M342.635,169.365c-12.493-12.501-32.754-12.507-45.255-0.014c-0.005,0.005-0.01,0.01-0.015,0.014L256,210.752   l-41.365-41.387c-12.501-12.501-32.769-12.501-45.269,0s-12.501,32.769,0,45.269L210.752,256l-41.387,41.365   c-12.501,12.501-12.501,32.769,0,45.269c12.501,12.501,32.769,12.501,45.269,0l0,0L256,301.248l41.365,41.387   c12.501,12.501,32.769,12.501,45.269,0c12.501-12.501,12.501-32.769,0-45.269L301.248,256l41.387-41.365   c12.501-12.493,12.507-32.754,0.014-45.255C342.644,169.375,342.64,169.37,342.635,169.365z"/><path d="M256,0C114.615,0,0,114.615,0,256s114.615,256,256,256s256-114.615,256-256C511.847,114.678,397.322,0.153,256,0z M256,448   c-106.039,0-192-85.961-192-192S149.961,64,256,64s192,85.961,192,192C447.882,361.99,361.99,447.882,256,448z"/></g></svg>          
+        <h3 className="mt-4  text-lg font-bold text-gray-900 sm:text-xl">
+            Delete
           </h3>
       
-          <p className="mt-2 hidden text-sm sm:block">
-            {speech}
+        
+          <p className="font-bold">
+            {topic}
           </p>
         </div>
       
+       
       </a>
     )
+  }else{
+    return(
+      <a onClick={()=>push(`/home/speech/${id+1}`)}
+      className="w-56 h-72 relative  hover:bg-gray-100 flex items-start justify-between rounded-xl border border-gray-100 p-4 shadow-xl sm:p-6 lg:p-8 "
+      href="#"
+    >
+      
+      <div className="pt-4 text-gray-500">
+        <div className="flex flex-row gap-2">
+
+
+        <span
+          className={sideTag}
+        >
+          {side}
+        </span>
+        <span
+          className={typeTag}
+        >
+          {type}
+        </span>
+   
+
+        </div>
+    
+    
+        <h3 className="mt-4  text-lg font-bold text-gray-900 sm:text-md">
+         {topic}
+        </h3>
+    
+        <p className="mt-2 hidden text-sm sm:block">
+          {speech}
+        </p>
+
+        
+      </div>
+
+      
+    
+    </a>
+  )
+  }
+  
+ 
 
 }

@@ -46,17 +46,18 @@ export default function Signup() {
               <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                   <img
-                    className="mx-auto h-10 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    className="mx-auto h-20 w-auto"
+                    src="/logo.svg"
                     alt="Your Company"
                   />
                   <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                     Sign in to your account
                   </h2>
                 </div>
+                
         
-                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                  <form className="space-y-6" action="#" method="POST">
+                <div className="mt-10 sm:mx-auto sm:w-1/2 sm:max-w-sm">
+                  {/* <form className="space-y-6" action="#" method="POST">
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                         Email address
@@ -112,23 +113,25 @@ export default function Signup() {
                     <div class="text-gray-600">
                       Or
                     </div>
-                  </Divider>
+                  </Divider> */}
                   <btn onClick={()=>{
-                  signIn('google')}} 
-                  class="flex cursor-pointer mt-5 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  signIn('google', {callbackUrl: 'http://localhost:3000/home'})}} 
+                  class="flex gap-3 cursor-pointer mt-5 w-full justify-center items-center rounded-md border-indigo-600 border-2 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
-                  <img class="w-5 m-2" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+                  <img class="w-5 m-2" src="/google.svg"/>
+                  <p className="text-gray-600 hover:text-white">
+                    Sign in with Google
+                  </p>
                   </btn>
         
-                  <p className="mt-10 text-center text-sm text-gray-500">
+                  {/* <p className="mt-10 text-center text-sm text-gray-500">
                     Not a member?{' '}
                     <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                       Start a 14 day free trial
                     </a>
-                  </p>
+                  </p> */}
                 </div>
                
-                <a onClick={()=>signOut()}>Sign Out</a>
               </div>
             </>
           )
