@@ -1,10 +1,8 @@
-// import Document from "@/components/home/document"
-import Document from "@/components/home/document";
-// import Header from '@/components/home/header';
+
 import 'tailwindcss/tailwind.css';
-import fetchAllSpeeches from "@/lib/fetchAllSpeeches";
+import fetchAllSpeeches from '../../lib/fetchAllSpeeches';
 import { getServerSession } from "next-auth/next";
-import HomeClient from "@/components/home/home";
+import HomeClient from '../../components/home/home';
 import { GET } from "../api/auth/[...nextauth]/route";
 import {redirect} from "next/navigation"
 export default async function Home() {

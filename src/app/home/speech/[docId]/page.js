@@ -3,8 +3,6 @@ import 'tailwindcss/tailwind.css';
 
 import fetchAllSpeeches from "@/lib/fetchAllSpeeches";
 import { getServerSession } from "next-auth/next";
-import { GetServerSidePropsContext } from "next";
-import Header from "@/components/home/header";
 import { GET } from "@/app/api/auth/[...nextauth]/route";
 import SpeechesClient from "@/components/home/speech/speech";
 import { redirect } from "next/navigation";

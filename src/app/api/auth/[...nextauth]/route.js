@@ -1,13 +1,13 @@
 import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
-import clientPromise from '@/components/mongodb'
 import { signIn, signOut } from 'next-auth/react'
+import clientPromise from '../../../../components/mongodb'
 export const authOptions = {
   session: {
     strategy: 'jwt',
   },
-  // adapter: MongoDBAdapter(clientPromise, {databaseName: "debatr"}),
+  adapter: MongoDBAdapter(clientPromise, {databaseName: "debatr"}),
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,

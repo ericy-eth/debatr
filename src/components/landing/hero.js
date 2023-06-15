@@ -14,7 +14,7 @@ const navigation = [
   { name: 'Company', href: '#' },
 ]
 
-export default function Example({scrollToSection}) {
+export default function Hero({scrollToSection}) {
 const { push } = useRouter();
 
 

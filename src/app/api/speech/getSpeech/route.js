@@ -16,5 +16,12 @@ export async function POST(request){
     }catch(e){
         console.log(e);
     }
-    return NextResponse.json({userDocuments: userData.documents})
+
+    if(userData.documents!=null){
+        return NextResponse.json({userDocuments: userData.documents})
+
+    }else{
+        return NextResponse.json({userDocuments:[]})
+
+    }
 }
