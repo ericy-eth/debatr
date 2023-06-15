@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.14",
+    "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
     "@mui/material": "^5.13.2",
     "@next-auth/mongodb-adapter": "^1.1.3",
