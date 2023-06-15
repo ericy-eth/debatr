@@ -16,7 +16,7 @@ const CreateSpeech = ({ onSubmit }) => {
     const [side, setSide] = useState(null)
 
     const [formSubmit, setFormSubmit] = useState(false)
-    const [invalideInput, setInvalidInput] = useState(false)
+    const [invalidInput, setInvalidInput] = useState(false)
     const [result, setResult] = useState("")
     async function submitForm(e){
         e.preventDefault()
@@ -26,8 +26,8 @@ const CreateSpeech = ({ onSubmit }) => {
         }
         setInvalidInput(false)
         setFormSubmit(true)
-        console.log(topic, type, side);
-        return
+       
+     
         try {
             const response = await fetch("/api/newPrompt", {
               method: "POST",
@@ -66,7 +66,7 @@ const CreateSpeech = ({ onSubmit }) => {
     
    
       <fieldset onSubmit={submitForm}>
-      <button type="submit" onClick={()=>router.push("/home")} className= "mx-5 mt-5 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Go Back</button>
+      <button type="submit" disabled={formSubmit} onClick={()=>router.push("/home")} className= "mx-5 mt-5 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Go Back</button>
         
         <div className="flex flex-col gap-y-5 m-5 items-center">
      
@@ -314,7 +314,7 @@ const CreateSpeech = ({ onSubmit }) => {
             
             }
          
-            {invalideInput &&
+            {invalidInput &&
            <div class="flex p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50  dark:text-red-400 dark:border-red-800" role="alert">
            <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
            <span class="sr-only">Info</span>
