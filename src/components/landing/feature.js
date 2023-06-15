@@ -26,13 +26,13 @@ export default function Feature() {
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
           <div className="lg:pr-8 lg:pt-4">
             <div className="lg:max-w-lg">
-              <h2 className="text-base font-semibold leading-7 text-indigo-600">Work faster</h2>
+              <h2 className="text-base font-semibold leading-7 text-red-600">Work faster</h2>
               <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">A better workflow</p>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-              Our application allows you to quickly and easily deploy your AI-assisted speech creation app. Debate speeches can be generated and published in minutes, and they come with rebuttals to any counterpoints your opponents may raise. With <b>Debatr</b>, you'll be better equipped to take on any debate!
+              <b className="bg-gradient-to-r from-rose-500 to-rose-700 bg-clip-text text-transparent">Debatr</b> allows you to quickly and easily create your AI-assisted speech. Debate speeches can be generated and published in minutes, and they come with rebuttals to any counterpoints your opponents may raise. 
               </p>
               <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
-                {features.map((feature) => (
+              {features.map((feature) => (
                   <div key={feature.name} className="relative pl-9">
                     <dt className="inline font-semibold text-gray-900">
                       <img src={feature.icon} className="absolute left-1 top-1 h-5 w-5 text-indigo-600" aria-hidden="true"></img>

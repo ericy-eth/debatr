@@ -40,6 +40,7 @@ export default function Document({document, deleteButton, id}){
   speech = truncateString(speech, 35)
 
   async function deleteSpeech(){
+
     console.log("Speech deleted");
     try{
       await fetch("/api/speech/deleteSpeech", {
@@ -49,8 +50,8 @@ export default function Document({document, deleteButton, id}){
         },
         body: JSON.stringify({topic: topic }),
       });
-      console.log("Speech deleted");
       redirect("localhost:3000/home")
+
     }catch(e){
       console.log(e);
     }

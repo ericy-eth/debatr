@@ -20,9 +20,11 @@ export default function Landing(){
     </head>
      */}
     <Hero/>
+    <Clouds/>
     <Feature/>
-    <Testimonial/>
+    {/* <Testimonial/> */}
     {/* <Pricing/> */}
+
     <Footer/>
 
     </>)

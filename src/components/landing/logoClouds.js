@@ -1,46 +1,40 @@
 export default function Clouds() {
     return (
-      <div className="bg-white py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <h2 className="text-center text-lg font-semibold leading-8 text-gray-900">
-            Trusted by the world’s most innovative teams
+      <div className="bg-white py-24 sm:py-32 ">
+        <div className="mx-auto flex-col max-w-7xl px-6 px-lg:8 items-center ">
+          <h2 className="text-center text-xl font-semibold leading-8 text-gray-900">
+            As seen on
           </h2>
-          <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+          <div className="mx-auto self-center mt-10 flex justify-around  gap-x-8 gap-y-10 sm:max-w-xl  sm:gap-x-10">
+            
+            <div className="flex gap-3 items-center ">
             <img
-              className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-              src="https://tailwindui.com/img/logos/158x48/transistor-logo-gray-900.svg"
+              className=" max-h-12 object-contain "
+              src="/medium.png"
               alt="Transistor"
-              width={158}
-              height={48}
+              width={64}
+              height={64}
             />
+            <div className="text-center text-lg font-semibold text-gray-600">
+              Medium
+            </div>
+
+            </div>
+            <div className="flex gap-3 items-center">
             <img
-              className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-              src="https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg"
+              className="max-h-12  object-contain "
+              src="/product-hunt.png"
               alt="Reform"
-              width={158}
+              width={48}
               height={48}
             />
-            <img
-              className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-              src="https://tailwindui.com/img/logos/158x48/tuple-logo-gray-900.svg"
-              alt="Tuple"
-              width={158}
-              height={48}
-            />
-            <img
-              className="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1"
-              src="https://tailwindui.com/img/logos/158x48/savvycal-logo-gray-900.svg"
-              alt="SavvyCal"
-              width={158}
-              height={48}
-            />
-            <img
-              className="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1"
-              src="https://tailwindui.com/img/logos/158x48/statamic-logo-gray-900.svg"
-              alt="Statamic"
-              width={158}
-              height={48}
-            />
+            <div className="text-center text-lg font-semibold text-gray-600">
+              Product Hunt
+            </div>
+            </div>
+         
+           
+           
           </div>
         </div>
       </div>

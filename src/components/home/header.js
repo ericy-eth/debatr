@@ -8,9 +8,11 @@ import { useState, useEffect } from 'react';
 
 
 export default function Header({session}) {
+  const {data: sessionClient} = useSession()
+  console.log("session ", session);
   const navigation = [
     { name: 'Home', href: '#', current: true },
-    { name: 'Pricing', href: '#', current: false },
+    // { name: 'Pricing', href: '#', current: false },
     
   ]
   const userNavigation = [
@@ -20,14 +22,13 @@ export default function Header({session}) {
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
-  const {data: sessionClient} = useSession()
-  
+ 
+ 
   const user = {
     name: session.user.name,
     email: session.user.email,
-    imageUrl: session.user.image,
   }
-
+  console.log("user ", user.imageUrl);
 
   return (
     <>
@@ -40,7 +41,7 @@ export default function Header({session}) {
         ```
       */}
       <div className="min-h-full">
-        <Disclosure as="nav" className="bg-gray-800">
+        <Disclosure as="nav" className="bg-red-500">
           {({ open }) => (
             <>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -61,8 +62,8 @@ export default function Header({session}) {
                             href={item.href}
                             className={classNames(
                               item.current
-                                ? 'bg-gray-900 text-white'
-                                : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                ? 'bg-red-900 text-white'
+                                : 'text-gray-300 hover:bg-red-700 hover:text-white',
                               'rounded-md px-3 py-2 text-sm font-medium'
                             )}
                             aria-current={item.current ? 'page' : undefined}
@@ -75,18 +76,25 @@ export default function Header({session}) {
                   </div>
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center md:ml-6">
-                      <button
+                      {/* <button
                         type="button"
                         className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       >
-                      </button>
+                      </button> */}
 
                       {/* Profile dropdown */}
                       <Menu as="div" className="relative ml-3">
                         <div>
-                          <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                          <Menu.Button className="flex max-w-xs items-center rounded-full bg-red-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-red-800">
                             <span className="sr-only">Open user menu</span>
-                            <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
+                            {sessionClient?.user &&(
+                              <>
+                              {sessionClient.user.image &&(
+                                <img className="h-8 w-8 rounded-full" src={sessionClient.user.image} alt="" />
+
+                              )}
+                              </>
+                            )}
                           </Menu.Button>
                         </div>
                         <Transition
@@ -121,7 +129,7 @@ export default function Header({session}) {
                                       callbackUrl:"http://localhost:3000/signup"
                                     })}
                                     className={classNames(
-                                      active ? 'bg-gray-100' : '',
+                                      active ? 'bg-red-100' : '',
                                       'block px-4 py-2 text-sm text-gray-700'
                                     )}
                                   >
@@ -137,7 +145,7 @@ export default function Header({session}) {
                   </div>
                   <div className="-mr-2 flex md:hidden">
                     {/* Mobile menu button */}
-                    <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-red-800 p-2 text-red-400 hover:bg-red-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-red-800">
                       <span className="sr-only">Open main menu</span>
                       {open ? (
                         <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -157,7 +165,7 @@ export default function Header({session}) {
                       as="a"
                       href={item.href}
                       className={classNames(
-                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        item.current ? 'bg-red-900 text-white' : 'text-gray-200 hover:bg-red-700 hover:text-white',
                         'block rounded-md px-3 py-2 text-base font-medium'
                       )}
                       aria-current={item.current ? 'page' : undefined}
@@ -166,21 +174,28 @@ export default function Header({session}) {
                     </Disclosure.Button>
                   ))}
                 </div>
-                <div className="border-t border-gray-700 pb-3 pt-4">
+                <div className="border-t border-red-700 pb-3 pt-4">
                   <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
-                      <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
+                    {sessionClient?.user &&(
+                              <>
+                              {sessionClient.user.image &&(
+                                <img className="h-8 w-8 rounded-full" src={sessionClient.user.image} alt="" />
+
+                              )}
+                              </>
+                            )}
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium leading-none text-white">{user.name}</div>
-                      <div className="text-sm font-medium leading-none text-gray-400">{user.email}</div>
+                      <div className="text-sm font-medium leading-none text-gray-200">{user.email}</div>
                     </div>
-                    <button
+                    {/* <button
                       type="button"
                       className="ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                     >
               
-                    </button>
+                    </button> */}
                   </div>
                   <div className="mt-3 space-y-1 px-2">
                     
@@ -190,7 +205,7 @@ export default function Header({session}) {
                         onClick={()=>signOut({
                           callbackUrl:"http://localhost:3000/signup"
                         })}
-                        className="block rounded-md px-3 py-2 text-base font-medium cursor-pointer text-gray-400 hover:bg-gray-700 hover:text-white"
+                        className="block rounded-md px-3 py-2 text-base font-medium cursor-pointer text-gray-200 hover:bg-red-700 hover:text-white"
                       >
                         Sign Out
                       </Disclosure.Button>

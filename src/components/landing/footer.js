@@ -1,7 +1,9 @@
-
+"use client"
 import { useRouter } from 'next/navigation';
 
 export default function Footer(){
+  const { push } = useRouter();
+
     return(
         <footer aria-label="Site Footer" className="bg-white dark:bg-gray-900">
   <div className="max-w-screen-xl px-4 pt-16 pb-8 mx-auto sm:px-6 lg:px-8 lg:pt-24">
@@ -16,12 +18,12 @@ export default function Footer(){
   
       </p>
 
-      <a
-        
-        className="inline-block px-12 py-3 mt-8 text-sm font-medium text-white border border-indigo-600 rounded-full hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring active:bg-indigo-500"
+      <button
+        onClick={()=>push("/signup")}
+        className="inline-block px-12 py-3 mt-8 text-sm font-medium text-white border border-red-600 rounded-full hover:bg-red-600 hover:text-white focus:outline-none focus:ring active:bg-red-500"
       >
         Get Started
-      </a>
+      </button>
     </div>
 
     <div
@@ -61,7 +63,7 @@ export default function Footer(){
       <ul className="flex justify-center gap-6 mt-8 sm:mt-0 lg:justify-end">
         <li>
           <a
-            href="/"
+            href="https://twitter.com/debatrxyz?s=21&t=mRQmhiibCgUQRrouR6jU5g"
             rel="noreferrer"
             target="_blank"
             className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
@@ -82,7 +84,7 @@ export default function Footer(){
         </li>
         <li>
           <a
-            href="https://github.com/ericy-eth/vocal-forge"
+            href="https://github.com/orgs/Debatr-ai/repositories"
             rel="noreferrer"
             target="_blank"
             className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
