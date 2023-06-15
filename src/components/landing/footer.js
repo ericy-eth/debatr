@@ -5,16 +5,16 @@ export default function Footer(){
   const { push } = useRouter();
 
     return(
-        <footer aria-label="Site Footer" className="bg-white dark:bg-gray-900">
+        <footer aria-label="Site Footer" className=" bg-gray-900">
   <div className="max-w-screen-xl px-4 pt-16 pb-8 mx-auto sm:px-6 lg:px-8 lg:pt-24">
     <div className="text-center">
       <h2
-        className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-5xl"
+        className="text-3xl font-extrabold text-white sm:text-5xl"
       >
         Start Winning Debates Today
       </h2>
 
-      <p className="max-w-sm mx-auto mt-4 text-gray-500 dark:text-gray-400">
+      <p className="max-w-sm mx-auto mt-4 text-gray-400">
   
       </p>
 
@@ -27,7 +27,7 @@ export default function Footer(){
     </div>
 
     <div
-      className="pt-8 mt-16 border-t border-gray-100 dark:border-gray-800 sm:flex sm:items-center sm:justify-between lg:mt-24"
+      className="pt-8 mt-16 border-t border-gray-800 sm:flex sm:items-center sm:justify-between lg:mt-24"
     >
       <nav aria-label="Footer Navigation - Support">
         <ul className="flex flex-wrap justify-center gap-4 text-xs lg:justify-end">
@@ -66,7 +66,7 @@ export default function Footer(){
             href="https://twitter.com/debatrxyz?s=21&t=mRQmhiibCgUQRrouR6jU5g"
             rel="noreferrer"
             target="_blank"
-            className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
+            className="text-gray-200 transition hover:opacity-75"
           >
             <span className="sr-only">Twitter</span>
 
@@ -87,7 +87,7 @@ export default function Footer(){
             href="https://github.com/orgs/Debatr-ai/repositories"
             rel="noreferrer"
             target="_blank"
-            className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
+            className="text-gray-200 transition hover:opacity-75"
           >
             <span className="sr-only">GitHub</span>
 

@@ -126,7 +126,7 @@ export default function Header({session}) {
                                 {({ active }) => (
                                   <button
                                     onClick={()=>signOut({
-                                      callbackUrl:"http://localhost:3000/signup"
+                                      callbackUrl:"/signup"
                                     })}
                                     className={classNames(
                                       active ? 'bg-red-100' : '',
@@ -203,7 +203,7 @@ export default function Header({session}) {
                         key="Signout"
                         as="a"
                         onClick={()=>signOut({
-                          callbackUrl:"http://localhost:3000/signup"
+                          callbackUrl:"/signup"
                         })}
                         className="block rounded-md px-3 py-2 text-base font-medium cursor-pointer text-gray-200 hover:bg-red-700 hover:text-white"
                       >

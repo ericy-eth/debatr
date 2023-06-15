@@ -82,7 +82,7 @@ const CreateSpeech = ({ onSubmit }) => {
                    id="UserEmail"
                    placeholder="Ex: Schools should do away with homework altogether..."
                    disabled={formSubmit}
-                   className="mt-1 p-4 w-full rounded-md text-black border-gray-200 shadow-sm sm:text-sm "
+                   className="mt-1 p-4 w-full rounded-md text-black shadow-md sm:text-sm "
                />
                </div>
 
@@ -106,13 +106,13 @@ const CreateSpeech = ({ onSubmit }) => {
                   <label
                   onClick={(e)=>setType("Fact")}
                   for="Fact"
-                  className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/fact:border-blue-500 peer-checked/fact:ring-1 peer-checked/fact:ring-blue-500"
+                  className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/fact:border-red-500 peer-checked/fact:ring-1 peer-checked/fact:ring-red-500"
                   >
                   <div className="flex items-center justify-between">
                       <p className="text-gray-700">Fact</p>
   
                       <svg
-                      className="hidden h-5 w-5 text-blue-600"
+                      className="hidden h-5 w-5 text-red-600"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
@@ -143,13 +143,13 @@ const CreateSpeech = ({ onSubmit }) => {
                   <label
                   onClick={(e)=>setType("Opinion")}
                   for="Opinion"
-                  className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/opinion:border-blue-500 peer-checked/opinion:ring-1 peer-checked/opinion:ring-blue-500"
+                  className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/opinion:border-red-500 peer-checked/opinion:ring-1 peer-checked/opinion:ring-red-500"
                   >
                   <div className="flex items-center justify-between">
                       <p className="text-gray-700">Opinion</p>
   
                       <svg
-                      className="hidden h-5 w-5 text-blue-600"
+                      className="hidden h-5 w-5 text-red-600"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
@@ -180,13 +180,13 @@ const CreateSpeech = ({ onSubmit }) => {
                   <label
                   onClick={(e)=>setType("Policy")}
                   for="Policy"
-                  className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/policy:border-blue-500 peer-checked/policy:ring-1 peer-checked/policy:ring-blue-500"
+                  className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/policy:border-red-500 peer-checked/policy:ring-1 peer-checked/policy:ring-red-500"
                   >
                   <div className="flex items-center justify-between">
                       <p className="text-gray-700">Policy</p>
   
                       <svg
-                      className="hidden h-5 w-5 text-blue-600"
+                      className="hidden h-5 w-5 text-red-600"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
                       fill="currentColor"
@@ -227,13 +227,13 @@ const CreateSpeech = ({ onSubmit }) => {
                     <label
                     onClick={(e)=>setSide("Affirmative")}
                     for="Affirmative"
-                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/affirmative:border-blue-500 peer-checked/affirmative:ring-1 peer-checked/affirmative:ring-blue-500"
+                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/affirmative:border-red-500 peer-checked/affirmative:ring-1 peer-checked/affirmative:ring-red-500"
                     >
                     <div className="flex items-center justify-between">
                         <p className="text-gray-700">Affirmative</p>
 
                         <svg
-                        className="hidden h-5 w-5 text-blue-600"
+                        className="hidden h-5 w-5 text-red-600"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -264,13 +264,13 @@ const CreateSpeech = ({ onSubmit }) => {
                     <label
                     onClick={(e)=>setSide("Negation")}
                     for="Negation"
-                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/negation:border-blue-500 peer-checked/negation:ring-1 peer-checked/negation:ring-blue-500"
+                    className="block cursor-pointer rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked/negation:border-red-500 peer-checked/negation:ring-1 peer-checked/negation:ring-red-500"
                     >
                     <div className="flex items-center justify-between">
                         <p className="text-gray-700">Negative</p>
 
                         <svg
-                        className="hidden h-5 w-5 text-blue-600"
+                        className="hidden h-5 w-5 text-red-600"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"

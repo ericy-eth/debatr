@@ -50,7 +50,7 @@ export default function Document({document, deleteButton, id}){
         },
         body: JSON.stringify({topic: topic }),
       });
-      redirect("localhost:3000/home")
+      redirect("/home")
 
     }catch(e){
       console.log(e);

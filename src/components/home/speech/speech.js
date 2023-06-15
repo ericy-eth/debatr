@@ -46,6 +46,8 @@ export default function SpeechesClient({props:userSpeeches, docId}) {
           href="#"
         >
           <div className="pt-4 text-gray-500">
+          <button type="submit"  onClick={()=>router.push("/home")} className= "mt-5 mb-5 rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">Go Back</button>
+
             <div className="flex flex-row gap-2">
   
             <span
