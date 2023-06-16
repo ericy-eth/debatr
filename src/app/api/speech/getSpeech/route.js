@@ -11,13 +11,13 @@ export async function POST(request){
 
         const collection = db.collection("users")
 
-        userData = await collection.findOne({email: username})
+        userData = await collection.find({ documents: { $exists: true } })
         console.log("fetch request");        
     }catch(e){
         console.log(e);
     }
 
-    if(userData.documents!=null){
+    if(userData){
         return NextResponse.json({userDocuments: userData.documents})
 
     }else{
