@@ -40,12 +40,7 @@ export const authOptions = {
   },
   callbacks:{
 
-    // async signOut(baseUrl){
-    //     return "http://localhost:3000"
-    // },
-    // async signIn(){
-    //   return "http://localhost:3000/home"
-    // },
+  
     async session({ token, session }) {
     
       return session
