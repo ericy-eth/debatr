@@ -3,7 +3,6 @@ import GoogleProvider from 'next-auth/providers/google'
 import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
 import { signIn, signOut } from 'next-auth/react'
 import clientPromise from '../../../../components/mongodb'
-import addUser from '../../../../lib/addUser'
 export const authOptions = {
   session: {
     strategy: 'jwt',
