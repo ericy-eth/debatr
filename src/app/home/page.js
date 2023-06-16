@@ -11,6 +11,7 @@ export default async function Home() {
     redirect('/signup')
   }
   let data =  JSON.parse(JSON.stringify(res, null, 2))
+  console.log(data, " data");
   const resSpeeches = await fetchAllSpeeches(data.user.email)
   let userSpeeches = await resSpeeches.json()
   userSpeeches = userSpeeches.userDocuments
