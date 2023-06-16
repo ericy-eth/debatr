@@ -65,10 +65,15 @@ export default function HomeClient({props: userSpeeches, session}) {
       
        
       </a>
-    
-    {userSpeeches.map((document, i)=>(
+      
+    {userSpeeches &&(
+        <>
+           {userSpeeches.map((document, i)=>(
       <Document key={i} id={i} document={document} deleteButton={deleteButton}/>
       ))}
+        </>
+    )}
+ 
 
       
       </div>

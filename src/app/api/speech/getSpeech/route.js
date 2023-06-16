@@ -21,7 +21,7 @@ export async function POST(request){
         return NextResponse.json({userDocuments: userData.documents})
 
     }else{
-        return NextResponse.json({userDocuments:[]})
+        return NextResponse.json({userDocuments: null})
 
     }
 }
