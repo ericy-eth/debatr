@@ -47,7 +47,7 @@ const CreateSpeech = ({ onSubmit }) => {
                 headers: {
                   "Content-Type": "application/json",
                 },
-                body: JSON.stringify({speech: speech, username: session.user.email, topic: topic, type: type, side:side }),
+                body: JSON.stringify({speech: speech.result, username: session.user.email, topic: topic, type: type, side:side }),
               });
               console.log(updateUser);
               router.push("/home")
