@@ -37,7 +37,7 @@ const CreateSpeech = ({ onSubmit }) => {
               body: JSON.stringify({ topic: topic, type: type, side:side }),
             });
       
-            const speech = await response.text();
+            const speech = await response.json();
             // if (response.status !== 200) {
             //   throw speech.error || new Error(`Request failed with status ${response.status}`);
             // }
