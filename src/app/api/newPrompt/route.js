@@ -18,7 +18,7 @@ export async function POST(request) {
   const side = body.side
 
   console.log("body ", body);
-
+  console.log("session ", session);
 
   // if (topic.trim().length < 3) {
   //   res.status(400).json({
@@ -42,7 +42,7 @@ export async function POST(request) {
       // res.status(200).json({ result: completion.data.choices[0].text });
       return NextResponse.json(completion.data.choices[0].text)
     } catch(error) {
-
+      console.log(error);
       // // Consider adjusting the error handling logic for your use case
       // if (error.response) {
       //   console.error(error.response.status, error.response.data);
