@@ -1,7 +1,7 @@
 import { Configuration, OpenAIApi } from "openai"
 import { NextResponse } from "next/server";
 import { GET } from "../auth/[...nextauth]/route";
-import { getServerSession } from "next-auth/next";
+// import { getServerSession } from "next-auth/next";
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -9,7 +9,7 @@ const openai = new OpenAIApi(configuration);
 
 export async function POST(request) {
   const res = await getServerSession(GET);
-  let session =  JSON.parse(JSON.stringify(res, null, 2))
+  // let session =  JSON.parse(JSON.stringify(res, null, 2))
 
   const body = request.body
 
@@ -18,7 +18,7 @@ export async function POST(request) {
   const side = body.side
 
   console.log("body ", body);
-  console.log("session ", session);
+  // console.log("session ", session);
 
   // if (topic.trim().length < 3) {
   //   res.status(400).json({
@@ -28,7 +28,7 @@ export async function POST(request) {
   //   });
   //   return;
   // }
-  if(session){
+  // if(session){
     try {
       const completion = await openai.createCompletion({
         model: "text-davinci-003",
@@ -56,7 +56,7 @@ export async function POST(request) {
       //   });
       // }
     }
-  }
+  // }
 
 }
 
