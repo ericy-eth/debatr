@@ -29,7 +29,7 @@ const CreateSpeech = ({ onSubmit }) => {
        
      
         try {
-            const response = await fetch("http://www.debatr.xyz/api/newPrompt", {
+            const response = await fetch("https://www.debatr.xyz/api/newPrompt", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -42,7 +42,7 @@ const CreateSpeech = ({ onSubmit }) => {
               throw speech.error || new Error(`Request failed with status ${response.status}`);
             }
 
-            const updateUser = await fetch("http://www.debatr.xyz/api/speech/newSpeech", {
+            const updateUser = await fetch("https://www.debatr.xyz/api/speech/newSpeech", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
