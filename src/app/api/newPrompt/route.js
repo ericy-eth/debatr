@@ -11,7 +11,7 @@ export async function POST(request) {
   const res = await getServerSession(GET);
   let session =  JSON.parse(JSON.stringify(res, null, 2))
 
-  const body = await request.json()
+  const body = request.body
 
   const topic = body.topic
   const type = body.type
@@ -40,7 +40,7 @@ export async function POST(request) {
 
       console.log(completion.data.choices[0].text);
       // res.status(200).json({ result: completion.data.choices[0].text });
-      return NextResponse.json(completion.data.choices[0].text)
+      return NextResponse.json({result:completion.data.choices[0].text})
     } catch(error) {
       console.log(error);
       // // Consider adjusting the error handling logic for your use case
