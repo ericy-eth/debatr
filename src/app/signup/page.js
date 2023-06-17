@@ -53,7 +53,7 @@ export default function Signup() {
             <div className="space-y-4 text-sm font-medium">
                 <button 
                 onClick={
-                  ()=>signIn('google', {callbackUrl:"http://www.debatr.xyz/home"})
+                  ()=>signIn('google', {callbackUrl:`http://www.debatr.xyz/home`})
                 }
 
 

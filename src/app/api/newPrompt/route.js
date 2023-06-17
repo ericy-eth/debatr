@@ -17,6 +17,8 @@ export async function POST(request) {
   const type = body.type
   const side = body.side
 
+  console.log("body ", body);
+
 
   // if (topic.trim().length < 3) {
   //   res.status(400).json({
@@ -35,21 +37,24 @@ export async function POST(request) {
         max_tokens: 1000
       });
   
+
+      console.log(completion.data.choices[0].text);
       // res.status(200).json({ result: completion.data.choices[0].text });
       return NextResponse.json({result: completion.data.choices[0].text})
     } catch(error) {
+
       // // Consider adjusting the error handling logic for your use case
-      // if (error.response) {
-      //   console.error(error.response.status, error.response.data);
-      //   res.status(error.response.status).json(error.response.data);
-      // } else {
-      //   console.error(`Error with OpenAI API request: ${error.message}`);
-      //   res.status(500).json({
-      //     error: {
-      //       message: 'An error occurred during your request.',
-      //     }
-      //   });
-      // }
+      if (error.response) {
+        console.error(error.response.status, error.response.data);
+        res.status(error.response.status).json(error.response.data);
+      } else {
+        console.error(`Error with OpenAI API request: ${error.message}`);
+        res.status(500).json({
+          error: {
+            message: 'An error occurred during your request.',
+          }
+        });
+      }
     }
   }
 

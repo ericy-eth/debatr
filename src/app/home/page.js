@@ -15,6 +15,7 @@ export default async function Home() {
   const resSpeeches = await fetchAllSpeeches(data.user.email)
   let userSpeeches = await resSpeeches.json()
   userSpeeches = userSpeeches.userDocuments
+  console.log("User speeches ", userSpeeches);
     return (
       <>
         <HomeClient props={userSpeeches} session={data}></HomeClient>
