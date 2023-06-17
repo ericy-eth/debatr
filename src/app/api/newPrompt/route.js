@@ -17,6 +17,29 @@ export async function POST(request) {
   const type = body.type
   const side = body.side
 
+  try {
+    const completion = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: generatePrompt(topic, type, side),
+      temperature: 0.6,
+    });
+    NextResponse.status(200).json({ result: completion.data.choices[0].text });
+  } catch(error) {
+    // Consider adjusting the error handling logic for your use case
+    if (error.response) {
+      console.error(error.response.status, error.response.data);
+      NextResponse.status(error.response.status).json(error.response.data);
+    } else {
+      console.error(`Error with OpenAI API request: ${error.message}`);
+      NextResponse.status(500).json({
+        error: {
+          message: 'An error occurred during your request.',
+        }
+      });
+    }
+  }
+}
+
 
   // if (topic.trim().length < 3) {
   //   res.status(400).json({
@@ -53,10 +76,9 @@ export async function POST(request) {
   //   }
   // }
 
-    return NextResponse.json({result: body.topic})
 
 
-}
+
 
 function generatePrompt(topic, type, side) {
 
