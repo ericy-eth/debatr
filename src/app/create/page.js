@@ -41,8 +41,8 @@ const CreateSpeech = ({ onSubmit }) => {
             // if (response.status !== 200) {
             //   throw speech.error || new Error(`Request failed with status ${response.status}`);
             // }
-
-            const updateUser = await fetch("https://www.debatr.xyz/api/speech/newSpeech", {
+            try{
+              const updateUser = await fetch("https://www.debatr.xyz/api/speech/newSpeech", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
@@ -51,6 +51,11 @@ const CreateSpeech = ({ onSubmit }) => {
               });
               console.log(updateUser);
               router.push("/home")
+            }catch(error){
+              console.log(error);
+              alert(error.message)
+            }
+         
 
             // setResult(data.result);
           } catch(error) {
