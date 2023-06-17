@@ -1,7 +1,7 @@
 import { Configuration, OpenAIApi } from "openai"
 import { NextResponse } from "next/server";
 import { GET } from "../auth/[...nextauth]/route";
-// import { getServerSession } from "next-auth/next";
+import { getServerSession } from "next-auth/next";
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -9,16 +9,14 @@ const openai = new OpenAIApi(configuration);
 
 export async function POST(request) {
   const res = await getServerSession(GET);
-  // let session =  JSON.parse(JSON.stringify(res, null, 2))
+  let session =  JSON.parse(JSON.stringify(res, null, 2))
 
-  const body = request.body
+  const body = await request.json()
 
   const topic = body.topic
   const type = body.type
   const side = body.side
 
-  console.log("body ", body);
-  // console.log("session ", session);
 
   // if (topic.trim().length < 3) {
   //   res.status(400).json({
@@ -28,7 +26,7 @@ export async function POST(request) {
   //   });
   //   return;
   // }
-  // if(session){
+  if(session){
     try {
       const completion = await openai.createCompletion({
         model: "text-davinci-003",
@@ -37,12 +35,9 @@ export async function POST(request) {
         max_tokens: 1000
       });
   
-
-      console.log(completion.data.choices[0].text);
       // res.status(200).json({ result: completion.data.choices[0].text });
-      return NextResponse.json({result:completion.data.choices[0].text})
+      return NextResponse.json({result: completion.data.choices[0].text})
     } catch(error) {
-      console.log(error);
       // // Consider adjusting the error handling logic for your use case
       // if (error.response) {
       //   console.error(error.response.status, error.response.data);
@@ -56,7 +51,7 @@ export async function POST(request) {
       //   });
       // }
     }
-  // }
+  }
 
 }
 

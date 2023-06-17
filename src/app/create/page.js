@@ -29,41 +29,35 @@ const CreateSpeech = ({ onSubmit }) => {
        
      
         try {
-            const response = await fetch("https://www.debatr.xyz/api/newPrompt", {
+          const response = await fetch("/api/newPrompt", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ topic: topic, type: type, side:side }),
+          });
+    
+          const speech = await response.json();
+          if (response.status !== 200) {
+            throw speech.error || new Error(`Request failed with status ${response.status}`);
+          }
+
+          const updateUser = await fetch("/api/speech/newSpeech", {
               method: "POST",
               headers: {
-                "Content-Type":  "application/json",
+                "Content-Type": "application/json",
               },
-              body: JSON.stringify({ topic: topic, type: type, side:side }),
+              body: JSON.stringify({speech: speech.result, username: session.user.email, topic: topic, type: type, side:side }),
             });
-      
-            const speech = await response.json();
-            // if (response.status !== 200) {
-            //   throw speech.error || new Error(`Request failed with status ${response.status}`);
-            // }
-            try{
-              const updateUser = await fetch("https://www.debatr.xyz/api/speech/newSpeech", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({speech: speech.result, username: session.user.email, topic: topic, type: type, side:side }),
-              });
-              console.log(updateUser);
-              router.push("/home")
-            }catch(error){
-              console.log(error);
-              alert(error.message)
-            }
-         
+            console.log(updateUser);
+            router.push("/home")
 
-            // setResult(data.result);
-          } catch(error) {
-            // Consider implementing your own error handling logic here
-            console.error(error);
-            alert(error.message);
-          }
-        
+          // setResult(data.result);
+        } catch(error) {
+          // Consider implementing your own error handling logic here
+          console.error(error);
+          alert(error.message);
+        }
     }
 
   return (
