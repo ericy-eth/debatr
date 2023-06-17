@@ -40,7 +40,7 @@ export async function POST(request) {
 
       console.log(completion.data.choices[0].text);
       // res.status(200).json({ result: completion.data.choices[0].text });
-      return NextResponse.json({result:completion.data.choices[0].text})
+      return NextResponse.json(completion.data.choices[0].text)
     } catch(error) {
       console.log(error);
       // // Consider adjusting the error handling logic for your use case

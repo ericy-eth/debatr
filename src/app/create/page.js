@@ -32,12 +32,12 @@ const CreateSpeech = ({ onSubmit }) => {
             const response = await fetch("https://www.debatr.xyz/api/newPrompt", {
               method: "POST",
               headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "text/plain",
               },
               body: JSON.stringify({ topic: topic, type: type, side:side }),
             });
       
-            const speech = await response.json();
+            const speech = await response.text();
             // if (response.status !== 200) {
             //   throw speech.error || new Error(`Request failed with status ${response.status}`);
             // }
@@ -47,7 +47,7 @@ const CreateSpeech = ({ onSubmit }) => {
                 headers: {
                   "Content-Type": "application/json",
                 },
-                body: JSON.stringify({speech: speech.result, username: session.user.email, topic: topic, type: type, side:side }),
+                body: JSON.stringify({speech: speech, username: session.user.email, topic: topic, type: type, side:side }),
               });
               console.log(updateUser);
               router.push("/home")
