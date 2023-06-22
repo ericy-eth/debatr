@@ -1,3 +1,5 @@
+export const runtime = 'edge'
+
 import { Configuration, OpenAIApi } from "openai"
 import { NextResponse } from "next/server";
 import { GET } from "../auth/[...nextauth]/route";
@@ -7,7 +9,6 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-export const runtime = 'edge'
 
 
 
