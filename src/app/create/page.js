@@ -29,6 +29,8 @@ const CreateSpeech = ({ onSubmit }) => {
        
      
         try {
+          console.error("before calling new prompt api");
+
           const response = await fetch("/api/newPrompt", {
             method: "POST",
             headers: {
@@ -36,11 +38,12 @@ const CreateSpeech = ({ onSubmit }) => {
             },
             body: JSON.stringify({ topic: topic, type: type, side:side }),
           });
-    
+          console.error("after calling new prompt api");
           const speech = await response.json();
           // if (response.status !== 200) {
           //   throw speech.error || new Error(`Request failed with status ${response.status}`);
           // }
+          console.error("before calling new speech api");
 
           const updateUser = await fetch("/api/speech/newSpeech", {
               method: "POST",
@@ -49,12 +52,15 @@ const CreateSpeech = ({ onSubmit }) => {
               },
               body: JSON.stringify({speech: speech.result, username: session.user.email, topic: topic, type: type, side:side }),
             });
+            console.error("after calling new speech api");
+
             console.log(updateUser);
             router.push("/home")
 
           // setResult(data.result);
         } catch(error) {
           // Consider implementing your own error handling logic here
+          console.log("custom error log");
           console.error(error);
           alert(error.message);
         }
