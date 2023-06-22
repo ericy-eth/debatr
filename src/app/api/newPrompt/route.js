@@ -26,17 +26,17 @@ export async function POST(request) {
     NextResponse.json({ result: completion.data.choices[0].text });
   } catch(error) {
     // Consider adjusting the error handling logic for your use case
-    // if (error.response) {
-    //   console.error(error.response.status, error.response.data);
-    //   NextResponse.status(error.response.status).json(error.response.data);
-    // } else {
-    //   console.error(`Error with OpenAI API request: ${error.message}`);
-    //   NextResponse.status(500).json({
-    //     error: {
-    //       message: 'An error occurred during your request.',
-    //     }
-    //   });
-    // }
+    if (error.response) {
+      console.error(error.response.status, error.response.data);
+      NextResponse.status(error.response.status).json(error.response.data);
+    } else {
+      console.error(`Error with OpenAI API request: ${error.message}`);
+      NextResponse.status(500).json({
+        error: {
+          message: 'An error occurred during your request.',
+        }
+      });
+    }
     console.log(error);
   }
 }
