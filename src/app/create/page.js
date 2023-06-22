@@ -38,9 +38,9 @@ const CreateSpeech = ({ onSubmit }) => {
           });
     
           const speech = await response.json();
-          if (response.status !== 200) {
-            throw speech.error || new Error(`Request failed with status ${response.status}`);
-          }
+          // if (response.status !== 200) {
+          //   throw speech.error || new Error(`Request failed with status ${response.status}`);
+          // }
 
           const updateUser = await fetch("/api/speech/newSpeech", {
               method: "POST",
