@@ -3,9 +3,8 @@ import { Configuration, OpenAIApi } from "openai"
 import { NextResponse } from "next/server";
 import { GET } from "../auth/[...nextauth]/route";
 // import { getServerSession } from "next-auth/next";
-export const config ={
-  runtime: 'edge'
-}
+export const runtime = 'edge'
+
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
