@@ -15,7 +15,7 @@ export async function POST(request) {
     console.error("invalid openapi key")
     return;
   }
-  const res = await getServerSession(GET);
+  // const res = await getServerSession(GET);
   // let session =  JSON.parse(JSON.stringify(res, null, 2))
 
   const body = await request.json()
