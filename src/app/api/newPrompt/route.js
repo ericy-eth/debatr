@@ -35,7 +35,7 @@ export async function POST(request) {
   } catch(error) {
     // Consider adjusting the error handling logic for your use case
     if (error.response) {
-      console.error("api call->error.response")
+      
 
       console.error(error.response.status, error.response.data);
     } else {
