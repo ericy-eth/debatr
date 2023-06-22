@@ -44,6 +44,7 @@ export async function POST(request) {
       console.error(`Error with OpenAI API request: ${error.message}`);
     }
     console.log(error);
+    return NextResponse.json({result: "There has been an error"})
   }
 }
 
